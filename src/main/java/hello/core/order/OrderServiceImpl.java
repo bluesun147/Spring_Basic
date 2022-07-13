@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -12,7 +13,13 @@ public class OrderServiceImpl implements OrderService {
     // 회원 찾기
     private final MemberRepository memberRepository = new MemoryMemberRepository();
     // 할인 정책
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 구현체에도 의존하고 있음!! dip 위반
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 이 코드로 바꾸면 ocp 위반
+
+    // ==> 이 문제 어떻게 해결할까?
+    // 누군가가 클라이언트(OrderServiceImpl)에 DiscountPolicy의 구현 객체 대신 생성하고 주입해줘야 함.
+
+    private DiscountPolicy discountPolicy; // 추상화(인터페이스)에만 의존
 
     // 주문 생성 요청 오면 회원 정보 조회 하고, 할인 정책에 회원 넘김
     @Override
