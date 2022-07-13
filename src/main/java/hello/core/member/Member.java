@@ -3,7 +3,7 @@ package hello.core.member;
 public class Member { // 회원 엔티티
     private Long id;
     private String name;
-    private Grade grade;
+    private Grade grade; // enum
 
     public Member(Long id, String name, Grade grade) { // alt+insert generate - constructor
         this.id = id;
