@@ -30,7 +30,8 @@ class RateDiscountPolicyTest {
         // when
         int discount = discountPolicy.discount(member, 10000); // 0원 나와야 함
         // then
-        Assertions.assertThat(discount).isEqualTo(1000);
+        Assertions.assertThat(discount).isEqualTo(0);
+        //Assertions.assertThat(discount).isEqualTo(1000);
 //        Expected :1000
 //        Actual   :0
     }
