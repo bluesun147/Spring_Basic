@@ -18,6 +18,9 @@ public class AppConfig {
 
     @Bean
     public MemoryMemberRepository memberRepository() {
+
+        System.out.println("call AppConfig.memberRepository");
+
         return new MemoryMemberRepository();
     }
 
@@ -29,12 +32,18 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService() {
+
+        System.out.println("call AppConfig.memberService");
+
         // MemberService 객체 만들 때 MemoryMemberRepository 생성
         return new MemberServiceImpl(memberRepository()); // 생성자 주입.
     }
 
     @Bean
     public OrderService orderService() {
+
+        System.out.println("call AppConfig.orderService");
+
         return new OrderServiceImpl(memberRepository(), discountPolicy()); // 두개 주입
     }
 }
